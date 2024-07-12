@@ -150,7 +150,7 @@ namespace DemoAuthJwt.Controllers {
 				}
 
 				// validate expiry time of the token
-				var utcExpiryDate = long.Parse(tokenInVerification.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Exp).Value);
+				var utcExpiryDate = long.Parse(tokenInVerification.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Exp)!.Value);
 				// Convert long to DateTime
 				var expiryDate = UnixTimeStampToDateTime(utcExpiryDate);
 				if (expiryDate > DateTime.Now) {
@@ -168,7 +168,7 @@ namespace DemoAuthJwt.Controllers {
 						Errors = new List<string> { "Invalid token" }
 					};
 				}
-				var jti = tokenInVerification.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Jti).Value;
+				var jti = tokenInVerification.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Jti)!.Value;
 				if(storedToken.JwtId != jti) {
 					return new AuthResponse() {
 						IsSuccess = false,

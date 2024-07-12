@@ -10,6 +10,7 @@ namespace DemoAuthJwt.Controllers {
 	[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 	[Route("api/[controller]")]
 	[ApiController]
+	[Authorize]
 	public class TeamsController : ControllerBase {
 		private readonly ApplicationDbContext _dbContext;
 
